@@ -179,6 +179,7 @@ class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
         """
         self.theta = theta
         ValueIterationAgent.__init__(self, mdp, discount, iterations)
+        
     def highestQValue(self, state):
         pos_actions = self.mdp.getPossibleActions(state)
         if len(pos_actions) == 0: return self.values[state]
@@ -213,3 +214,4 @@ class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
                 diff = abs(self.values[p] - self.highestQValue(p))
                 if diff > self.theta: heap.update(p, -diff)
         return
+    
